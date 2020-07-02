@@ -8,59 +8,83 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
         rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css" />
     <link rel="stylesheet" href="index.css">
 </head>
 
 <body>
-    <div class="mainpage">
-        <!-- <div class="block">
-            <h1> Star Wars</h1>
-            <p>Characters in all of Star Wars.</p>
-        </div> -->
+    <div id="main" class="mainpage">
+        <h1 class="title">Accuweather</h1>
+        <div id="weatherbox" class="weather">
+            <i id="icon" class="fas fa-cloud-sun"
+                style="font-size: 30px; border: 1px solid white; padding: 15px;border-radius: 50%;"></i>
+            <h1 id="location" class="location">Today's Weather in Atlanta</h1>
+
+
+            <h1 id="temp" class="temp">77</h1>
+
+        </div>
     </div>
 </body>
-<script>
-    // const request = new XMLHttpRequest();
-    // request.onreadystatechange = () => {
-    //     if (request.readyState === 4 && request.status === 200) {
-    //         console.log(request.response);
-    //         console.log(JSON.parse(request.response));
-    //     }
 
-    // };
-    // // This is how you would acess info from another file(json); ./filename.json
-    // // It would appear as though you are getting the info on someone you have filed in that json file
-    // request.open('GET', './names.json');
-    // request.send();
-
+<script src="index.js"></script>
+<!-- <script>
+    // This is the object method used to create a new request. 
     const request = new XMLHttpRequest();
 
+    // Every time you want to make updates on your browser, you would use an event listener called onreadystatechange. You literally call it like you would with an event listener. FOR EX: request.onreadystatechange = ()=>{console.log(this)}
+
+    // 'this' is a keyword referring to the object and in this case, 'this' is referring to the previous object XMLHttpRequest()
     request.onreadystatechange = () => {
-        if (request.readyState === 4 && request.status === 200) {
-            let names = JSON.parse(request.response)
-            console.log(names)
+        console.log(this);
+    }
 
-            let doc = document.querySelector(".mainpage")
-            names.forEach(name => {
-                let nameDom = document.createElement("div")
-                let info = document.createElement('ul');
-                nameDom.innerText = name.name;
-                // info.innerText = name.eye_color;
-                info.append(name.eye_color, name.mass, name.height);
-                doc.append(nameDom);
-                doc.append(info);
-                nameDom.addEventListener('click', () => {
-                    info.classList.toggle('visi');
-                })
+    // GET : requests data from a File -> used for getting info on a user in a database 
+    // POST : sends data to create a new resource -> used for things like posting a status 
+    // PATCH : basically an update to an existing  resource -> used for fixing a broken game lol
+    // DELETE : this one should be obvious 
 
-            })
+    // you would start the HTTP response method using the open( function). the first argument when calling this function will always be the method type and then the second argument is going to always be the resource. 
+    // So where ever you want to pull data from, thats gonna be your second argument EX:
+    request.open("GET", "./names.json");
+    // once you request to open, you use the send() function to actually send the request through to execute your function. 
+
+
+    // You want to always make sure that the ready state is finished and that the ready state number is 4.  4 means that the request is finished and the response is ready. 
+
+    // You also want the status code to be 200-299 because those codes mean that the requests are successful. If you get anything with 400, it means an error hence ERROR 404 NOT FOUND. Anything from 300-399 means there are redirects and 500-599 mean that there are server errors. 
+
+    // SO LIKE THIS 
+    const newRequest = new XMLHttpRequest();
+    newRequest.onreadystatechange = () => {
+        if (this.readyState === 4 && this.status === 200) {
+            console.log(this);
         }
     };
+    newRequest.open("GET", "./newnames.json");
+    newRequest.send();
 
+    // ANOTHER ONE 
+    const requestInfoOn = new XMLHttpRequest();
+    requestInfoOn.onreadystatechange = () => {
+        if (this.readyState === 4 && this.status === 200) {
+            console.log(this);
+        }
+    };
+    requestInfoOn.open("GET", "./newnames.json");
+    requestInfoOn.send();
 
+    // ANOTHER WAY TO DO THIS 
+    // using fetch is much simpler and automatically defaults GET requests. You run fetch() with the api database you want to grab info from. so really you're saying fetch data from this file attached to it. 
+    // You would then use .then() to pass what you want to do with the info you fetched. 
+    fetch("./newnames.json").then((response) => {
+        console.log(response);
+    })
 
-    request.open("GET", "./starwars.json");
-    request.send();
-</script>
+    fetch("./names.json").then((response) => {
+
+        console.log(response);
+    })
+</script> -->
 
 </html>
